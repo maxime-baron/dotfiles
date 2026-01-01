@@ -1,0 +1,31 @@
+#pulseaudio{
+    background-image: url("../../icons/audio/volume_high.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    min-width: 20px;
+
+    margin: 0 4px 0 4px;
+}
+
+/* Pulseaudio icons for each state */
+#pulseaudio.mute{
+    background-image: url("../../icons/audio/volume_muted.svg");
+}
+
+#pulseaudio.low{
+    background-image: url("../../icons/audio/volume_low.svg");
+}
+
+#pulseaudio.medium{
+    background-image: url("../../icons/audio/volume_medium.svg");
+}
+
+#pulseaudio.high{
+    background-image: url("../../icons/audio/volume_high.svg");
+}
+
+/* Pulseaudio icons for the muted status*/
+#pulseaudio.muted{
+    background-image: url("../../icons/audio/volume_muted.svg");
+}

@@ -1,0 +1,12 @@
+{
+  "network": {
+    "tooltip": false,
+    // Wifi icons
+    "format-wifi": "{icon}",
+    "format-icons": ["", "", ""],
+    // Others icons
+    "format-ethernet": "",
+    "format-linked": "",
+    "format-disconnected": ""
+  }
+}

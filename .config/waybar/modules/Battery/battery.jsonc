@@ -1,0 +1,22 @@
+{
+  "battery": {
+    /* BATTERY STATES */
+    "states": {
+      "empty": 20,
+      "low": 40,
+      "medium": 60,
+      "high": 80,
+      "full": 99
+    },
+    "icon-size": 20,
+    "format": " ",
+    /* CHARGING STATES */
+    "format-charging-empty": " ",
+    "format-charging-low": " ",
+    "format-charging-medium": " ",
+    "format-charging-high": " ",
+    "format-charging-full": " ",
+
+    "on-click-right": "pkill waybar & hyprctl dispatch exec waybar"
+  }
+}

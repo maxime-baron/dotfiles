@@ -1,0 +1,14 @@
+{
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 0, // Disable scroll
+    "states": {
+        "mute": 0,
+        "low": 33,
+        "medium": 66,
+        "high": 100
+    },
+    "format": " ",
+    "format-muted": " "
+  }
+}

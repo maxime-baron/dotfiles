@@ -1,0 +1,152 @@
+@import url('./modules/Battery/battery.css');
+@import url('./modules/Network/network.css');
+@import url('./modules/Pulseaudio/pulseaudio.css');
+@import url('./modules/Workspaces/workspaces.css');
+
+* {
+    all: unset;
+  font-family: 'Jost', 'IcoFont';
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  background: none;
+}
+
+.modules-left, .modules-right {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+
+  background: rgba(83, 86, 115, .3);
+  border-radius: 999px;
+  padding: 2px 1px 2px 1px;
+  box-shadow: 0 0 2px 0 rgba(242, 242, 242, 0.05) inset,
+    0 0 0 1px rgba(153, 153, 153, 0.1) inset,
+    2px 2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    -2px -2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    3px 3px 0 -3px rgba(0, 0, 0, 0.1) inset;
+}
+
+/* When waybar recieve .hidden */
+window#waybar.hidden .modules-left,
+window#waybar.hidden .modules-center,
+window#waybar.hidden .modules-right {
+    opacity: 0;
+    /* Simulate a transform */
+    margin-top: -50px; 
+    margin-bottom: 50px;
+}
+
+#clock {
+  margin-left: 4px;
+  margin-right: 8px;
+}
+
+tooltip {
+  background: #171717;
+  color: #a1bdce;
+  font-size: 13px;
+  border-radius: 7px;
+  border: 2px solid #101a24;
+}
+
+#tray menu * {
+  min-height: 16px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #9488e3;
+}
+
+#tray menu separator {
+  min-height: 10px;
+}
+
+#custom-spacer {
+  opacity: 0;
+}
+#custom-smallspacer {
+  opacity: 0;
+}
+
+#custom-mouse {
+  font-size: 14px;
+  margin-bottom: 6px;
+  background: #161320;
+}
+
+#custom-power {
+  font-size: 15px;
+  color: #ffffff;
+  background: rgba(22, 19, 32, 0.9);
+  margin: 6px 0px 6px 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#backlight {
+  color: #2096c0;
+  background: rgba(23, 23, 23, 0);
+  font-weight: normal;
+  font-size: 19px;
+  margin: 1px 0px 0px 0px;
+  padding-left: 0px;
+  padding-right: 2px;
+}
+#bluetooth,
+#custom-cliphist {
+  color: #e6e7e7;
+  background: #161320;
+  opacity: 1;
+  margin: 4px 0px 4px 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+  background: #a1bdce;
+  background-color: transparent;
+  box-shadow: none;
+  margin-right: 7px;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+  margin-top: -3px;
+  min-width: 90px;
+  min-height: 10px;
+  margin-bottom: -4px;
+  border-radius: 8px;
+  background: #343434;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+  border-radius: 8px;
+  background-color: #2096c0;
+}
+
+#taskbar {
+  padding: 1px;
+}
+
+/* Style for launchers */
+
+#custom-expand {
+  min-width: 25px;
+  color: #a1bdce;
+  font-size: 16px;
+}
+
+#group-minimized {
+  border-left: solid;
+  border-left-width: 0.5;
+}

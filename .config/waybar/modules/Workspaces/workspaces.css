@@ -1,0 +1,49 @@
+
+#workspaces{
+    color: white;
+}
+
+#workspaces button {
+    transition: all 0.4s cubic-bezier( 0.65, -0.23, 0.46, 1.33 );
+    background: transparent;
+    border-radius: 999px;
+    padding: 2px 5px 2px 5px;
+    margin: 0 2px 0 2px;
+}
+
+#workspaces button:nth-child(n+8) label {
+    font-size: 12px;
+    padding: 0px 3px;
+}
+
+#workspaces button label {
+    margin-top: 2px;
+}
+
+#workspaces button.active {
+    background: #313A4C;
+    box-shadow: 0 0 2px 0 rgba(242, 242, 242, 0.05) inset,
+    0 0 0 1px rgba(153, 153, 153, 0.1) inset,
+    2px 2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    -2px -2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    3px 3px 0 -3px rgba(0, 0, 0, 0.1) inset;
+}
+
+#workspaces button.active:hover {
+    background: #313A4C;
+    box-shadow: 0 0 2px 0 rgba(242, 242, 242, 0.05) inset,
+    0 0 0 1px rgba(153, 153, 153, 0.1) inset,
+    2px 2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    -2px -2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    3px 3px 0 -3px rgba(0, 0, 0, 0.1) inset;
+}
+
+#workspaces button:hover {
+    transition: all 0.2s cubic-bezier( 0.65, -0.23, 0.46, 1.33 );
+    background: #212938;
+    box-shadow: 0 0 2px 0 rgba(242, 242, 242, 0.05) inset,
+    0 0 0 1px rgba(153, 153, 153, 0.1) inset,
+    2px 2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    -2px -2px 1px -2px rgba(179, 179, 179, 0.1) inset,
+    3px 3px 0 -3px rgba(0, 0, 0, 0.1) inset;
+}

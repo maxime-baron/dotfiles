@@ -1,0 +1,59 @@
+/* Commons battery style */
+
+#battery{
+    background-image: url("../../icons/battery/battery_full.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    min-width: 24px;
+
+    margin: 0 4px 0 4px;
+}
+
+/* Battery SVG icons for each state */
+
+#battery.empty{
+    background-image: url("../../icons/battery/battery_empty.svg");
+}
+
+#battery.low{
+    background-image: url("../../icons/battery/battery_low.svg");
+}
+
+#battery.medium{
+    background-image: url("../../icons/battery/battery_medium.svg");
+}
+
+#battery.high{
+    background-image: url("../../icons/battery/battery_high.svg");
+}
+
+#battery.full{
+    background-image: url("../../icons/battery/battery_full.svg");
+}
+
+/* Battery SVG icons for the charging status of each state */
+
+#battery.charging{
+    background-image: url("../../icons/battery/battery_charging_full.svg");
+}
+
+#battery.charging.empty{
+    background-image: url("../../icons/battery/battery_charging_empty.svg");
+}
+
+#battery.charging.low{
+    background-image: url("../../icons/battery/battery_charging_low.svg");
+}
+
+#battery.charging.medium{
+    background-image: url("../../icons/battery/battery_charging_medium.svg");
+}
+
+#battery.charging.high{
+    background-image: url("../../icons/battery/battery_charging_high.svg");
+}
+
+#battery.charging.full{
+    background-image: url("../../icons/battery/battery_charging_full.svg");
+}

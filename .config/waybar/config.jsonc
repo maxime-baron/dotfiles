@@ -1,0 +1,28 @@
+{
+  "include": [
+    "./modules/Battery/battery.jsonc",
+    "./modules/Network/network.jsonc",
+    "./modules/Pulseaudio/pulseaudio.jsonc",
+    "./modules/Workspaces/workspaces.jsonc"
+  ],
+  
+  "layer": "top",
+  "mode": "hide",
+  "start_hidden": false,
+  "margin": 8,
+  
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "notifications",
+    "pulseaudio",
+    "network",
+    "battery",
+    "clock"
+  ],
+
+  "clock": {
+    "format": "{:%a %d %b %H:%M}"
+  }
+}
