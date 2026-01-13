@@ -1,0 +1,24 @@
+history = true
+history_when_empty = true
+text_prefix = "Search: "
+icon= "search"
+name_pretty = "Web search"
+always_show_default=false
+
+[[entries]]
+name = "Google"
+icon = "google"
+url = "https://www.google.com/search?q=%TERM%"
+prefix = "g"
+
+[[entries]]
+name = "Perplexity"
+icon = "perplexity"
+url = "https://www.perplexity.ai/?q=%TERM%"
+prefix = "p"
+
+[[entries]]
+name = "Claude"
+icon = "claude"
+url = "https://claude.ai/new?q=%TERM%"
+prefix = "c"
