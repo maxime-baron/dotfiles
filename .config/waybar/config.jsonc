@@ -6,11 +6,12 @@
     "./modules/Workspaces/workspaces.jsonc"
   ],
   
-  "layer": "top",
-  "mode": "hide",
+  "layer": "overlay",
+  "mode": "dock",
+  "exclusive": true,
   "start_hidden": false,
   "margin": 8,
-  
+
   "modules-left": [
     "hyprland/workspaces"
   ],
