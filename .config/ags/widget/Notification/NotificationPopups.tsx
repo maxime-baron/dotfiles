@@ -44,7 +44,7 @@ export default function NotificationPopups() {
           visible={notifications((ns) => ns.length > 0)}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
         >
-          <box orientation={Gtk.Orientation.VERTICAL}>
+          <box orientation={Gtk.Orientation.VERTICAL} halign={Gtk.Align.END}>
             <For each={notifications}>
               {(notification) => <Notification notification={notification} />}
             </For>

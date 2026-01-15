@@ -37,10 +37,9 @@ interface NotificationProps {
 }
 
 export default function Notification({ notification: n }: NotificationProps) {
-  const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 5 : 3 // 5s for critical, 3s for others
+  const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 8 : 5 // 5s for critical, 3s for others
 
   const [revealed, setRevealed] = createState(false)
-  let isPaused = false
 
 
   // Timeout to automatically close the notification
@@ -48,7 +47,7 @@ export default function Notification({ notification: n }: NotificationProps) {
     GLib.PRIORITY_DEFAULT,
     timeoutDuration,
     () => {
-      n.dismiss()
+      dismissWithAnimation()
       return GLib.SOURCE_REMOVE
     }
   )
@@ -58,6 +57,16 @@ export default function Notification({ notification: n }: NotificationProps) {
     setRevealed(true)
     return GLib.SOURCE_REMOVE
   })
+
+  // Animated dismiss
+  const dismissWithAnimation = () => {
+    setRevealed(false)
+    // Wait for animation to complete before dismissing
+    GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+      n.dismiss()
+      return GLib.SOURCE_REMOVE
+    })
+  }
 
   // Clear the timeout if the notification is closed manually
   onCleanup(() => GLib.source_remove(timeoutId))
@@ -75,7 +84,7 @@ export default function Notification({ notification: n }: NotificationProps) {
         break
 
       case Gdk.BUTTON_MIDDLE: // Middle click
-        n.dismiss()
+        dismissWithAnimation()
         break
 
       default:
