@@ -4,7 +4,7 @@ import Notifd from "gi://AstalNotifd"
 import Notification from "./Notification"
 import { createBinding, For, createState, onCleanup } from "ags"
 
-export default function NotificationPopups() {
+export default function NotificationPopup() {
   const monitors = createBinding(app, "monitors")
 
   const notifd = Notifd.get_default()

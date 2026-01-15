@@ -1,10 +1,10 @@
 import app from "ags/gtk4/app"
 import style from "./style.scss"
-import NotificationPopups from "./widget/Notification/NotificationPopups"
+import NotificationPopup from './widget/NotificationPopup/NotificationPopup'
 
 app.start({
   css: style,
   main() {
-    NotificationPopups()
+    NotificationPopup()
   },
 })
