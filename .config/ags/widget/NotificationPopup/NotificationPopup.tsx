@@ -29,6 +29,10 @@ export default function NotificationPopup() {
     setNotifications((ns) => ns.filter((n) => n.id !== id))
   })
 
+  const removeNotification = (id: number) => {
+    setNotifications((ns) => ns.filter((n) => n.id !== id))
+  }
+
   onCleanup(() => {
     notifd.disconnect(notifiedHandler)
     notifd.disconnect(resolvedHandler)
@@ -46,7 +50,7 @@ export default function NotificationPopup() {
         >
           <box orientation={Gtk.Orientation.VERTICAL} halign={Gtk.Align.END}>
             <For each={notifications}>
-              {(notification) => <Notification notification={notification} />}
+              {(notification) => <Notification notification={notification} remove={removeNotification}/>}
             </For>
           </box>
         </window>
