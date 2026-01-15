@@ -33,12 +33,12 @@ function urgency(n: AstalNotifd.Notification) {
 }
 
 interface NotificationProps {
-  notification: AstalNotifd.Notification
+  notification: AstalNotifd.Notification,
+  remove: (id: number) => void
 }
 
-export default function Notification({ notification: n }: NotificationProps) {
+export default function Notification({ notification: n, remove }: NotificationProps) {
   const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 5 : 3 // 5s for critical, 3s for others
-
   const [revealed, setRevealed] = createState(false)
 
   // Timeout to automatically close the notification
@@ -70,7 +70,7 @@ export default function Notification({ notification: n }: NotificationProps) {
     setRevealed(false)
     // Wait for animation to complete before dismissing
     GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
-      n.dismiss()
+      remove(n.id)
       return GLib.SOURCE_REMOVE
     })
   }
