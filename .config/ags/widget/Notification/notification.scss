@@ -44,6 +44,11 @@ window.NotificationPopups {
     .app-icon {
       margin: 0 0.4rem 0 0;
     }
+
+    .time {
+      color: gtkalpha($fg-color, 0.5);
+      font-weight: 400;
+    }
   }
 
   .content {
