@@ -37,20 +37,27 @@ interface NotificationProps {
 }
 
 export default function Notification({ notification: n }: NotificationProps) {
-  const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 8 : 5 // 5s for critical, 3s for others
+  const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 5 : 3 // 5s for critical, 3s for others
 
   const [revealed, setRevealed] = createState(false)
 
-
   // Timeout to automatically close the notification
-  const timeoutId = GLib.timeout_add_seconds(
-    GLib.PRIORITY_DEFAULT,
-    timeoutDuration,
-    () => {
+  let timeoutId: number | null = null
+
+  const startTimeout = () => {
+    if (timeoutId) return
+    timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, timeoutDuration, () => {
       dismissWithAnimation()
-      return GLib.SOURCE_REMOVE
+      return true
+    })
+  }
+
+  const stopTimeout = () => {
+    if (timeoutId) {
+      GLib.source_remove(timeoutId)
+      timeoutId = null
     }
-  )
+  }
 
   // Reveal animation on mount
   GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
@@ -68,9 +75,11 @@ export default function Notification({ notification: n }: NotificationProps) {
     })
   }
 
-  // Clear the timeout if the notification is closed manually
-  onCleanup(() => GLib.source_remove(timeoutId))
+  startTimeout()
 
+  // Clear the timeout if the notification is closed manually
+  onCleanup(() => stopTimeout())
+  
   /**
    * Handles mouse click events on the notification.
    * Left click invokes the default action, middle click dismisses the notification.
@@ -107,6 +116,7 @@ export default function Notification({ notification: n }: NotificationProps) {
           cursor={Gdk.Cursor.new_from_name("pointer", null)}
         >
           <Gtk.GestureClick button={0} onPressed={clickHanlder} />
+          <Gtk.EventControllerMotion onEnter={() => stopTimeout()} onLeave={() => startTimeout()}/>
           <box class="header">
             {(n.appIcon || isIcon(n.desktopEntry) || fileExists(n.image)) && (
               <image
