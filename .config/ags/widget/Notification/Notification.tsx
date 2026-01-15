@@ -37,6 +37,14 @@ interface NotificationProps {
 }
 
 export default function Notification({ notification: n }: NotificationProps) {
+  const timeoutDuration = n.urgency === AstalNotifd.Urgency.CRITICAL ? 5 : 3 // 5s for critical, 3s for others
+
+  // Timeout to automatically close the notification
+  const timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, timeoutDuration, () => {
+    n.dismiss()
+    return GLib.SOURCE_REMOVE
+  })
+
   return (
     <Adw.Clamp maximumSize={258}>
       <box
