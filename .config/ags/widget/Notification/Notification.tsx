@@ -45,6 +45,30 @@ export default function Notification({ notification: n }: NotificationProps) {
     return GLib.SOURCE_REMOVE
   })
 
+  // Clear the timeout if the notification is closed manually
+  onCleanup(() => GLib.source_remove(timeoutId))
+
+  /**
+ * Handles mouse click events on the notification.
+ * Left click invokes the default action, middle click dismisses the notification.
+ */
+  const clickHanlder = (source: Gtk.GestureClick) => {
+    const button = source.get_current_button()
+  
+    switch (button) {
+      case Gdk.BUTTON_PRIMARY: // Left click
+        n.invoke("default");
+        break
+        
+        case Gdk.BUTTON_MIDDLE: // Middle click
+        n.dismiss()
+        break
+
+        default:
+        break
+    }
+  }
+
   return (
     <Adw.Clamp maximumSize={258}>
       <box
@@ -53,7 +77,7 @@ export default function Notification({ notification: n }: NotificationProps) {
         orientation={Gtk.Orientation.VERTICAL}
         cursor={Gdk.Cursor.new_from_name("pointer", null)}
       >
-        <Gtk.GestureClick onPressed={() => n.invoke("default")} />
+        <Gtk.GestureClick button={0} onPressed={clickHanlder}/>
         <box class="header">
           {(n.appIcon || isIcon(n.desktopEntry) || fileExists(n.image)) && (
             <image
