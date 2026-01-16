@@ -47,7 +47,7 @@ export default function Notification({ notification: n, remove }: NotificationPr
   const startTimeout = () => {
     if (timeoutId) return
     timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, timeoutDuration, () => {
-      dismissWithAnimation()
+      removeWithAnimation()
       return true
     })
   }
@@ -65,8 +65,7 @@ export default function Notification({ notification: n, remove }: NotificationPr
     return GLib.SOURCE_REMOVE
   })
 
-  // Animated dismiss
-  const dismissWithAnimation = () => {
+  const removeWithAnimation = () => {
     setRevealed(false)
     // Wait for animation to complete before dismissing
     GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
@@ -93,7 +92,8 @@ export default function Notification({ notification: n, remove }: NotificationPr
         break
 
       case Gdk.BUTTON_MIDDLE: // Middle click
-        dismissWithAnimation()
+        removeWithAnimation()
+        n.dismiss()
         break
 
       default:
