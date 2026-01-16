@@ -2,6 +2,7 @@
 @import url('./modules/Network/network.css');
 @import url('./modules/Pulseaudio/pulseaudio.css');
 @import url('./modules/Workspaces/workspaces.css');
+@import url('./modules/Notifications/notifications.css');
 
 * {
     all: unset;

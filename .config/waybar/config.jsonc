@@ -3,7 +3,8 @@
     "./modules/Battery/battery.jsonc",
     "./modules/Network/network.jsonc",
     "./modules/Pulseaudio/pulseaudio.jsonc",
-    "./modules/Workspaces/workspaces.jsonc"
+    "./modules/Workspaces/workspaces.jsonc",
+    "./modules/Notifications/notifications.jsonc"
   ],
   
   "layer": "overlay",
@@ -16,7 +17,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "notifications",
+    "custom/notifications",
     "pulseaudio",
     "network",
     "battery",
