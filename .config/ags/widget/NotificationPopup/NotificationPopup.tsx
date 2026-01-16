@@ -6,6 +6,7 @@ import { createBinding, For, createState, onCleanup } from "ags"
 
 export default function NotificationPopup() {
   const monitors = createBinding(app, "monitors")
+  const notificationList = app.get_window('notification-list')
 
   const notifd = Notifd.get_default()
 
@@ -14,7 +15,8 @@ export default function NotificationPopup() {
   const notifiedHandler = notifd.connect("notified", (_, id, replaced) => {
     const notification = notifd.get_notification(id)
 
-    if(!notification) {
+    // Do not display notification popup if notificationList is open
+    if(!notification || notificationList?.is_visible()) {
       return;
     }
 
