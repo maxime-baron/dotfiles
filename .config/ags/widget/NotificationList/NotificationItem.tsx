@@ -1,35 +1,10 @@
 import Gtk from "gi://Gtk?version=4.0"
 import Gdk from "gi://Gdk?version=4.0"
 import Adw from "gi://Adw"
-import GLib from "gi://GLib"
 import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
-
-function isIcon(icon?: string | null) {
-  const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default()!)
-  return icon && iconTheme.has_icon(icon)
-}
-
-function fileExists(path: string) {
-  return GLib.file_test(path, GLib.FileTest.EXISTS)
-}
-
-function time(time: number, format = "%H:%M") {
-  return GLib.DateTime.new_from_unix_local(time).format(format)!
-}
-
-function urgency(n: AstalNotifd.Notification) {
-  const { LOW, NORMAL, CRITICAL } = AstalNotifd.Urgency
-  switch (n.urgency) {
-    case LOW:
-      return "low"
-    case CRITICAL:
-      return "critical"
-    case NORMAL:
-    default:
-      return "normal"
-  }
-}
+import { getTimeFormat, time } from '../../utils/dateUtils'
+import { fileExists, isIcon } from '../../utils/fsUtils'
 
 interface NotificationProps {
   notification: AstalNotifd.Notification
@@ -58,10 +33,9 @@ export default function NotificationItem({ notification: n }: NotificationProps)
   }
 
   return (
-      <Adw.Clamp maximumSize={258}>
+      <Adw.Clamp>
         <box
-          widthRequest={258}
-          class={`Notification ${urgency(n)}`}
+          class="notification item"
           orientation={Gtk.Orientation.VERTICAL}
           cursor={Gdk.Cursor.new_from_name("pointer", null)}
         >
@@ -89,7 +63,7 @@ export default function NotificationItem({ notification: n }: NotificationProps)
               class="time"
               hexpand
               halign={Gtk.Align.END}
-              label={time(n.time)}
+              label={time(n.time, getTimeFormat(n.time))}
             />
           </box>
           <box class="content">
