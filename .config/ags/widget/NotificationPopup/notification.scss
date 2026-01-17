@@ -12,7 +12,7 @@ window.NotificationPopups {
   all: unset;
 }
 
-.Notification {
+.notification {
   padding: 12px;
   margin: 4px 8px;
   border-radius: 14px;
@@ -23,30 +23,17 @@ window.NotificationPopups {
     -2px -2px 1px -2px #b3b3b31a inset,
     3px 3px 0 -3px #0000001a inset;
 
-  &.critical {
-    border: 1pt solid gtkalpha($error, 0.4);
-
-    .header {
-      .app-name {
-        color: gtkalpha($error, 0.8);
-      }
-
-      .app-icon {
-        color: gtkalpha($error, 0.6);
-      }
-    }
-  }
-
   .header {
     color: $fg-color;
     font-weight: 600;
 
     .app-icon {
-      margin: 0 0.4rem 0 0;
+      margin: 0 0.8rem 0 0;
     }
 
     .time {
       color: gtkalpha($fg-color, 0.5);
+      font-size: 12px;
       font-weight: 400;
     }
   }
