@@ -34,6 +34,7 @@ export default function NotificationList() {
   return (
     <window
       name="notification-list"
+      namespace="notification-list"
       application={app}
       visible={false}
       anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
