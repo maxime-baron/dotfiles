@@ -46,6 +46,7 @@ export default function NotificationPopup() {
         <window
           $={(self) => onCleanup(() => self.destroy())}
           class="NotificationPopups"
+          namespace="notification-popup"
           gdkmonitor={monitor}
           visible={notifications((ns) => ns.length > 0)}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
