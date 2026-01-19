@@ -53,8 +53,8 @@ export default function NotificationList() {
             hexpand={true}
           />
           <switch 
-            active={notifd.dontDisturb}
-            onStateSet={(_source, arg0) => notifd.set_dont_disturb(!arg0)}
+            active={!notifd.dontDisturb}
+            onStateSet={(_source, state) => notifd.set_dont_disturb(!notifd.dontDisturb)}
           />
         </box>
         <Gtk.Separator
