@@ -52,7 +52,10 @@ export default function NotificationList() {
             halign={Gtk.Align.START}
             hexpand={true}
           />
-          <switch />
+          <switch 
+            active={notifd.dontDisturb}
+            onStateSet={(_source, arg0) => notifd.set_dont_disturb(!arg0)}
+          />
         </box>
         <Gtk.Separator
           orientation={Gtk.Orientation.HORIZONTAL}
