@@ -1,6 +1,6 @@
 import { Astal, Gtk } from "ags/gtk4"
 import Notifd from "gi://AstalNotifd"
-import { createState, For, onCleanup } from "gnim"
+import { createState, For, onCleanup, With } from "gnim"
 import NotificationItem from "../NotificationList/NotificationItem"
 import app from "ags/gtk4/app"
 
@@ -61,26 +61,43 @@ export default function NotificationList() {
           orientation={Gtk.Orientation.HORIZONTAL}
           class="separator"
         />
-        <scrolledwindow
-          maxContentHeight={260}
-          propagateNaturalHeight={true}
-          hscrollbarPolicy={Gtk.PolicyType.NEVER}
-          class="scroll"
-        >
-          <box orientation={Gtk.Orientation.VERTICAL} class="notification-list">
-            <For each={notifications}>
-              {(notification, index) => (
-                <box orientation={Gtk.Orientation.VERTICAL}>
-                  <NotificationItem notification={notification} />
-                  {index() + 1 !== notifd.notifications.length  && <Gtk.Separator
-                    orientation={Gtk.Orientation.HORIZONTAL}
-                    class="separator"
-                  />}
-                </box>
-              )}
-            </For>
-          </box>
-        </scrolledwindow>
+        <With value={notifications}>
+          {(value) => {
+            if(value.length > 0){
+              return (
+                <scrolledwindow
+                  maxContentHeight={260}
+                  propagateNaturalHeight={true}
+                  hscrollbarPolicy={Gtk.PolicyType.NEVER}
+                  class="scroll"
+                >
+                  <box orientation={Gtk.Orientation.VERTICAL} class="notification-list">
+                    <For each={notifications}>
+                      {(notification, index) => (
+                        <box orientation={Gtk.Orientation.VERTICAL}>
+                          <NotificationItem notification={notification} />
+                          {index() + 1 !== notifd.notifications.length  && <Gtk.Separator
+                            orientation={Gtk.Orientation.HORIZONTAL}
+                            class="separator"
+                          />}
+                        </box>
+                      )}
+                    </For>
+                  </box>
+                </scrolledwindow>
+              )
+            }
+            return (
+              <label
+                class="placeholder"
+                label="No notification"
+                heightRequest={110}
+                halign={Gtk.Align.CENTER}
+                valign={Gtk.Align.CENTER}
+              />
+            )
+          }}
+        </With>
       </box>
     </window>
   )

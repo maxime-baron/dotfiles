@@ -43,6 +43,10 @@ $bg-color: #5356734d;
       margin-right: 8px;
       margin-bottom: 8px;
     }
+
+    .placeholder {
+      color: gtkalpha($fg-color, 0.5)
+    }
   }
 }
 
