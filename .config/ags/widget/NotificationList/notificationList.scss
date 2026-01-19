@@ -36,7 +36,7 @@ $bg-color: #5356734d;
     }
 
     .separator {
-      margin: 8px 0px;
+      margin: 4px 0px;
     }
 
     .notification-list {
@@ -47,11 +47,15 @@ $bg-color: #5356734d;
 }
 
 .item {
-  padding: 0px;
+  padding: 4px 4px;
   margin: 0px;
   background: none;
-  border-radius: 0px;
+  border-radius: 8px;
   box-shadow: none;
+}
+
+.item:hover {
+  background: $bg-color;
 }
 
 scrollbar {
