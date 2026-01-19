@@ -16,7 +16,7 @@ export default function NotificationPopup() {
     const notification = notifd.get_notification(id)
 
     // Do not display notification popup if notificationList is open
-    if(!notification || notificationList?.is_visible()) {
+    if(!notification || notificationList?.is_visible() || notifd.dontDisturb) {
       return;
     }
 
