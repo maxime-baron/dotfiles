@@ -5,12 +5,15 @@ import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
 import { getTimeFormat, time } from '../../utils/dateUtils'
 import { fileExists, isIcon } from '../../utils/fsUtils'
+import app from 'ags/gtk4/app'
 
 interface NotificationProps {
   notification: AstalNotifd.Notification
 }
 
 export default function NotificationItem({ notification: n }: NotificationProps) {
+  const parentWindow = app.get_window('notification-list')
+
   /**
    * Handles mouse click events on the notification.
    * Left click invokes the default action, middle click dismisses the notification.
@@ -21,6 +24,7 @@ export default function NotificationItem({ notification: n }: NotificationProps)
     switch (button) {
       case Gdk.BUTTON_PRIMARY: // Left click
         n.invoke("default")
+        parentWindow?.set_visible(false)
         break
 
       case Gdk.BUTTON_MIDDLE: // Middle click
