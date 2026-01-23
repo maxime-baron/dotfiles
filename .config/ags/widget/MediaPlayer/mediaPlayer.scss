@@ -1,0 +1,98 @@
+@use "sass:string";
+@function gtkalpha($c, $a) {
+  @return string.unquote("alpha(#{$c},#{$a})");
+}
+
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$fg-color: #ffffff;
+$bg-color: #5356734d;
+$error: red;
+
+window.mediaplayer-popup {
+  all: unset;
+}
+
+.media-player {
+  padding: 12px;
+  margin: 4px 8px;
+  border-radius: 14px;
+  background: $bg-color;
+  box-shadow: 0 0 2px 0 #f2f2f20d inset,
+    0 0 0 1px #9999991a inset,
+    2px 2px 1px -2px #b3b3b31a inset,
+    -2px -2px 1px -2px #b3b3b31a inset,
+    3px 3px 0 -3px #0000001a inset;
+
+  .cover {
+    border-radius: 8px;
+  }
+
+  .track-data {
+    color: $fg-color;
+    font-size: 14px;
+
+    .title {
+      font-weight: 600;
+    }
+
+    .artist {
+      color: gtkalpha($fg-color, 0.5);
+    }
+
+  }
+  .track-actions {
+    button {
+      padding: 2px;
+      background: none;
+      min-width: 16px;
+    }
+
+    image {
+      opacity: 0.8;
+    }
+  }
+
+  slider {
+    transition: all ease-in 100ms;
+    background: #53567399;
+    transform: scale(0.4);
+    box-shadow: none;
+  }
+
+  scale {
+    padding: 0px;
+    transition: all ease-in 100ms;
+    box-shadow: none;
+  }
+
+  scale:hover highlight,
+  scale:hover slider {
+      box-shadow: none;
+      background-color: white;
+  }
+
+  scale:hover slider {
+      transform: scale(0.6);
+  }
+
+  scale:hover {
+      box-shadow: none;
+  }
+
+
+  scale trough {
+    background: #53567366;
+  }
+
+  scale highlight {
+    transition: all ease-in 100ms;
+    background: #53567399;
+  }
+}
+
+  levelbar block.my-offset {
+    background-color: magenta;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+  }
