@@ -50,8 +50,10 @@ export default function MediaPlayerPopup() {
       {(monitor) => (
         <window
           $={(self) => onCleanup(() => self.destroy())}
-          class="mediaplayer-popups"
-          namespace="notification-popup"
+          name="mediaplayer-popup"
+          class="mediaplayer-popup"
+          namespace="mediaplayer-popup"
+          application={app}
           gdkmonitor={monitor}
           visible={visibility}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
