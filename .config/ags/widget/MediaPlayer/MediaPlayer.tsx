@@ -6,6 +6,7 @@ import Pango from "gi://Pango"
 import { fileExists} from '../../utils/fsUtils'
 import GLib from 'gi://GLib?version=2.0'
 import { createBinding } from 'gnim'
+import app from 'ags/gtk4/app'
 
 interface NotificationProps {
   mediaPlayer: Mpris.Player
@@ -18,7 +19,7 @@ export default function MediaPlayer({ mediaPlayer: mp }: NotificationProps) {
 
   const playbackStatus = createBinding(mp, "playbackStatus");
   const position = createBinding(mp, "position");
-  const length = createBinding(mp, "length"); 
+  const length = createBinding(mp, "length");
 
   return (
       <Adw.Clamp maximumSize={258}>
@@ -63,8 +64,8 @@ export default function MediaPlayer({ mediaPlayer: mp }: NotificationProps) {
             </box>
           </box>
           <slider
+            visible={app.get_window("mediaplayer-popup")?.isActive}
             orientation={Gtk.Orientation.HORIZONTAL}
-            // drawValue={true}
             hexpand={true}
             value={position}
             min={0}
