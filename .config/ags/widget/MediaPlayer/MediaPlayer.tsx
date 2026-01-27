@@ -15,8 +15,6 @@ interface NotificationProps {
 const iconPath = GLib.get_home_dir() + "/Documents/Projects/dotfiles/.config/waybar/icons/media-player/"
 
 export default function MediaPlayer({ mediaPlayer: mp }: NotificationProps) {
-  const timeoutDuration = 1 // 1 second
-
   const playbackStatus = createBinding(mp, "playbackStatus");
   const position = createBinding(mp, "position");
   const length = createBinding(mp, "length");
