@@ -1,7 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk } from "ags/gtk4"
 import Mpris from "gi://AstalMpris"
-import { createBinding, For, createState, onCleanup, With } from "ags"
+import { createState, onCleanup, With } from "ags"
 import MediaPlayer from './MediaPlayer'
 import GLib from 'gi://GLib'
 
