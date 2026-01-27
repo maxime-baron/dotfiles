@@ -79,6 +79,7 @@ export default function MediaPlayerPopup() {
           visible={visibility}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
         >
+          <Gtk.EventControllerMotion onEnter={() => stopTimeout()} onLeave={() => startTimeout()}/>
           <With value={player}>
             {(mediaPlayer)=> mediaPlayer && <MediaPlayer mediaPlayer={mediaPlayer}/>}
           </With>
