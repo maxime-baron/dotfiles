@@ -8,7 +8,6 @@ import GLib from 'gi://GLib'
 const TIMEOUT_DURATION = 3
 
 export default function MediaPlayerPopup() {
-  const monitors = createBinding(app, "monitors")
   const mpris = Mpris.get_default()
 
   const [player, setPlayer] = createState<Mpris.Player | undefined>(undefined)
@@ -67,24 +66,19 @@ export default function MediaPlayerPopup() {
   })
 
   return (
-    <For each={monitors}>
-      {(monitor) => (
-        <window
-          $={(self) => onCleanup(() => self.destroy())}
-          name="mediaplayer-popup"
-          class="mediaplayer-popup"
-          namespace="mediaplayer-popup"
-          application={app}
-          gdkmonitor={monitor}
-          visible={visibility}
-          anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
-        >
-          <Gtk.EventControllerMotion onEnter={() => stopTimeout()} onLeave={() => startTimeout()}/>
-          <With value={player}>
-            {(mediaPlayer)=> mediaPlayer && <MediaPlayer mediaPlayer={mediaPlayer}/>}
-          </With>
-        </window>
-      )}
-    </For>
+    <window
+      $={(self) => onCleanup(() => self.destroy())}
+      name="mediaplayer-popup"
+      class="mediaplayer-popup"
+      namespace="mediaplayer-popup"
+      application={app}
+      visible={visibility}
+      anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
+    >
+      <Gtk.EventControllerMotion onEnter={() => stopTimeout()} onLeave={() => startTimeout()}/>
+      <With value={player}>
+        {(mediaPlayer)=> mediaPlayer && <MediaPlayer mediaPlayer={mediaPlayer}/>}
+      </With>
+    </window>
   )
 }
