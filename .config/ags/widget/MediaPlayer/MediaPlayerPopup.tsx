@@ -3,6 +3,9 @@ import { Astal, Gtk } from "ags/gtk4"
 import Mpris from "gi://AstalMpris"
 import { createBinding, For, createState, onCleanup, With } from "ags"
 import MediaPlayer from './MediaPlayer'
+import GLib from 'gi://GLib'
+
+const TIMEOUT_DURATION = 3
 
 export default function MediaPlayerPopup() {
   const monitors = createBinding(app, "monitors")
@@ -12,12 +15,30 @@ export default function MediaPlayerPopup() {
   const [visibility, setVisibility] = createState<boolean>(false)
   const notifyHandlers = new Map<Mpris.Player, number>()
 
+  // Timeout to automatically close the notification
+  let timeoutId: number | null = null
+
+  const startTimeout = () => {
+    if (timeoutId) return
+    timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, TIMEOUT_DURATION, () => {
+      setVisibility(false)
+      timeoutId = null
+      return false
+    })
+  }
+
+  const stopTimeout = () => {
+    if (timeoutId) {
+      GLib.source_remove(timeoutId)
+      timeoutId = null
+    }
+  }
+
   const playerAddedHandler = mpris.connect("player-added", (_, addedPlayer) => {
-    console.log(addedPlayer.busName)
     const notifyId = addedPlayer.connect('notify::playback-status', () => {
-      console.log(addedPlayer.busName)
       setPlayer(addedPlayer)
       setVisibility(true)
+      startTimeout()
     })
     
     notifyHandlers.set(addedPlayer, notifyId)
