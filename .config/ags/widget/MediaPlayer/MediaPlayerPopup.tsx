@@ -14,7 +14,6 @@ export default function MediaPlayerPopup() {
   const [visibility, setVisibility] = createState<boolean>(false)
   const notifyHandlers = new Map<Mpris.Player, number>()
 
-  // Timeout to automatically close the notification
   let timeoutId: number | null = null
 
   const startTimeout = () => {
@@ -63,6 +62,13 @@ export default function MediaPlayerPopup() {
   onCleanup(() => {
     mpris.disconnect(playerAddedHandler)
     mpris.disconnect(playerClosedHandler)
+
+    notifyHandlers.forEach((notifyId, player) => {
+      player.disconnect(notifyId)
+    })
+    notifyHandlers.clear()
+  
+    stopTimeout()
   })
 
   return (
