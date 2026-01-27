@@ -54,9 +54,9 @@ export default function MediaPlayer({ mediaPlayer: mp }: NotificationProps) {
               </box>
             </box>
             <box class="track-actions" hexpand={false}>
-              <button onClicked={()=>mp.previous()}><image class="track-action" file={`${iconPath}media-player-backward.svg`} pixelSize={20}/></button>
-              <button onClicked={()=>mp.play_pause()}><image class="track-action" file={`${iconPath}${playbackStatus() === Mpris.PlaybackStatus.PLAYING ? 'media-player-pause.svg' : 'media-player-resume.svg'}`} pixelSize={20}/></button>
-              <button onClicked={()=>mp.next()}><image class="track-action" file={`${iconPath}media-player-forward.svg`} pixelSize={20}/></button>
+              <button sensitive={mp.canGoPrevious} onClicked={()=>mp.previous()}><image class="track-action" file={`${iconPath}media-player-backward.svg`} pixelSize={20} /></button>
+              <button sensitive={mp.canControl} onClicked={()=>mp.play_pause()}><image class="track-action" file={`${iconPath}${playbackStatus() === Mpris.PlaybackStatus.PLAYING ? 'media-player-pause.svg' : 'media-player-resume.svg'}`} pixelSize={20}/></button>
+              <button sensitive={mp.canGoNext} onClicked={()=>mp.next()}><image class="track-action" file={`${iconPath}media-player-forward.svg`} pixelSize={20}/></button>
             </box>
           </box>
           <slider
