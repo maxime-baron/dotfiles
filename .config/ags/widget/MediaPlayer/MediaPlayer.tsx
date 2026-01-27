@@ -27,8 +27,6 @@ export default function MediaPlayer({ mediaPlayer: mp }: NotificationProps) {
           orientation={Gtk.Orientation.VERTICAL}
           cursor={Gdk.Cursor.new_from_name("pointer", null)}
         >
-          {/* <Gtk.GestureClick button={0} onPressed={clickHanlder} />
-          <Gtk.EventControllerMotion onEnter={() => stopTimeout()} onLeave={() => startTimeout()}/> */}
           <box spacing={16}>
             <box class="track-data" hexpand={true} spacing={8}>
               {(fileExists(mp.get_cover_art())) && (
